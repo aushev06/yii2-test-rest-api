@@ -1,0 +1,71 @@
+
+
+###
+# Get Leads
+GET http://localhost/v1/leads
+Accept: application/json
+Authorization: Bearer $2y$13$ncKTXc5zQx83Pwq4/1.Xn.6iaWtXrAigGVYaNfkxUyefM7PI4RFvO
+
+###
+
+
+# Create Source
+POST /v1/sources HTTP/1.1
+Host: localhost
+Authorization: Bearer $2y$13$ncKTXc5zQx83Pwq4/1.Xn.6iaWtXrAigGVYaNfkxUyefM7PI4RFvO
+Content-Type: application/json
+
+{
+  "slug": "test",
+  "title": "Test"
+
+}
+
+###
+
+# Create Lead
+POST http://localhost/v1/leads
+Authorization: Bearer $2y$13$ncKTXc5zQx83Pwq4/1.Xn.6iaWtXrAigGVYaNfkxUyefM7PI4RFvO
+Content-Type: application/json
+
+{
+  "name": "Test Lead",
+  "status": "0",
+  "source_id": "1"
+}
+
+###
+
+# Update Lead
+PUT http://localhost/v1/leads/1/update
+Authorization: Bearer $2y$13$ncKTXc5zQx83Pwq4/1.Xn.6iaWtXrAigGVYaNfkxUyefM7PI4RFvO
+Content-Type: application/json
+
+{
+  "name": "Test Lead Updated",
+  "status": "0",
+  "source_id": "1"
+}
+
+###
+
+# Delete Lead
+DELETE http://localhost/v1/leads/1
+Authorization: Bearer $2y$13$ncKTXc5zQx83Pwq4/1.Xn.6iaWtXrAigGVYaNfkxUyefM7PI4RFvO
+Content-Type: application/json
+
+###
+
+# Auth
+POST http://localhost/v1/auth
+Authorization: Bearer $2y$13$ncKTXc5zQx83Pwq4/1.Xn.6iaWtXrAigGVYaNfkxUyefM7PI4RFvO
+Content-Type: application/json
+
+{
+"username": "root",
+"password": "secret"
+}
+
+
+
+

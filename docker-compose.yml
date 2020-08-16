@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+  ### Приложение ############################
+  nginx:
+    image: nginx:1.12-alpine
+    depends_on:
+      - app
+    ports:
+      - 80:80
+    volumes:
+      - ./:/app
+      - ./docker/nginx/app.conf:/etc/nginx/conf.d/default.conf
+
+  app:
+    build: ./docker/dev
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/app
+    working_dir: /app
+    environment:
+      - YII2_DB_DSN=${YII2_DB_DSN}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+  ### База данных ############################
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-root-password
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
